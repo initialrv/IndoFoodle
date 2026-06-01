@@ -1,0 +1,81 @@
+/* // home screen layout */
+#menu-screen {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px 24px 40px;
+}
+
+/* // main menu logo */
+.main-logo {
+  width: min(940px, 98%);
+  max-width: 940px;
+
+  height: auto;
+
+  display: block;
+
+  margin: -16px auto 34px;
+}
+
+/* // main question */
+.subtitle {
+  color: #C7925A;
+
+  max-width: 860px;
+
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+
+  margin: 0 auto 18px;
+}
+
+/* // supporting description */
+.description {
+  color: #9A7658;
+
+  max-width: 780px;
+
+  margin: 0 auto 36px;
+
+  font-size: 21px;
+  line-height: 1.65;
+}
+
+/* // menu buttons wrapper */
+.menu-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+/* // home action buttons */
+#menu-screen #start-btn,
+#menu-screen #practice-btn {
+  margin-top: 0;
+}
+
+/* // practice button */
+#practice-btn {
+  background: var(--surface2);
+
+  border: 1px solid var(--border);
+
+  box-shadow: none;
+}
+
+/* // daily text */
+.daily-text {
+  color: #B88A63;
+
+  margin-top: 20px;
+
+  font-size: 16px;
+  font-weight: 600;
+}

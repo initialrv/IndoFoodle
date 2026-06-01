@@ -1,0 +1,78 @@
+/* // fade both cards out together before next round */
+.card.fade-out {
+  opacity: 0 !important;
+  transform: scale(0.97) !important;
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease !important;
+}
+
+/* // remove reveal shadows during fade so winner does not visually linger */
+.card.correct.fade-out,
+.card.wrong.fade-out {
+  box-shadow: none;
+}
+
+/* // fade cards in together when a new round loads */
+.card.round-enter {
+  opacity: 0;
+  transform: scale(0.985);
+}
+
+/* // animate both cards into the new round */
+.card.round-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.card.revealed .percentage-overlay {
+  display: flex;
+  animation: revealGlowPop 0.72s ease both;
+}
+
+@keyframes revealGlowPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+    text-shadow:
+      0 4px 20px rgba(0,0,0,0.6),
+      0 0 0 rgba(244,162,97,0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.12);
+    text-shadow:
+      0 4px 20px rgba(0,0,0,0.6),
+      0 0 38px rgba(244,162,97,0.7);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow:
+      0 4px 20px rgba(0,0,0,0.6),
+      0 0 18px rgba(244,162,97,0.25);
+  }
+}
+
+.progress-dot.pop {
+  animation: dotPop 0.34s ease;
+}
+
+@keyframes dotPop {
+  0% {
+    transform: scale(0.75);
+  }
+
+  55% {
+    transform: scale(1.45);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

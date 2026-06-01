@@ -1,0 +1,175 @@
+.cards {
+  display: flex;
+  gap: 48px;
+  margin-top: 18px;
+  position: relative;
+}
+
+#warmup-screen .subtitle {
+  margin-top: -18px;
+}
+
+.card {
+  flex: 1;
+  position: relative;
+  height: min(68vh, 600px);
+  min-height: 420px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+body.cards-interactive .card:not(.disabled):hover {
+  transform: scale(1.012);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 3px var(--accent);
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.card.disabled {
+  cursor: not-allowed;
+}
+
+.card.correct {
+  border-color: var(--correct);
+  box-shadow: 0 0 0 3px var(--correct), 0 16px 48px rgba(76,175,80,0.3);
+}
+
+.card.wrong {
+  opacity: 0.62;
+  border-color: var(--wrong);
+  box-shadow: 0 0 0 3px var(--wrong), 0 16px 48px rgba(239,68,68,0.26);
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.food-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  margin: 0;
+}
+
+.card-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.96) 0%,
+    rgba(0,0,0,0.84) 24%,
+    rgba(0,0,0,0.34) 52%,
+    rgba(0,0,0,0.12) 100%
+  );
+  pointer-events: none;
+}
+
+.card.revealed .food-img {
+  filter: brightness(36%);
+}
+
+.card.wrong.revealed .food-img {
+  filter: brightness(28%) saturate(0.55);
+}
+
+.food-name,
+.food-desc {
+  position: relative;
+  z-index: 2;
+}
+
+.food-name {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 54px;
+  margin-top: 0;
+  padding: 0 28px;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: white;
+  text-align: left;
+}
+
+.food-desc {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  padding: 0 28px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.78);
+  text-align: left;
+  z-index: 2;
+}
+
+.percentage-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: none;
+  font-size: 88px;
+  font-weight: 900;
+  letter-spacing: -3px;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  z-index: 3;
+}
+
+#progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+  margin: 0px 0 30px;
+}
+
+.progress-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--dot-next);
+}
+
+.correct-dot {
+  background: var(--correct);
+}
+
+.wrong-dot {
+  background: var(--wrong);
+}
+
+.final-score {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+}

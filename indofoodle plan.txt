@@ -1,0 +1,45 @@
+1. Production Cleanup
+
+Fix remaining broken text and result message strings.
+Change QUESTION_COUNT back from 3 to 10 when testing is done.
+Change getTodayKey() from "test-day" back to the real date.
+Re-enable the daily lock logic if you still want one daily play per day.
+2. Mobile Responsiveness
+
+Game cards need a mobile layout.
+Result breakdown rows need a narrower/mobile-friendly layout.
+Topbar, logo sizing, buttons, and final score spacing should be checked on phone widths.
+3. Accessibility / UX Polish
+
+Add clearer keyboard focus states for food cards.
+Support Enter/Space selection cleanly.
+Add aria-live or readable status updates for score/result changes.
+Add reduced-motion handling for users who prefer less animation.
+4. Asset Optimization
+
+Compress food images.
+Confirm all food images have consistent crop/quality.
+Finalize logo/favicon files and remove unused generated-logo drafts later.
+Maybe make a smaller web-ready logo.png; current one is pretty large.
+5. Game Logic Hardening
+
+Prevent odd edge cases from rapid clicking, restart during transitions, or modal timing.
+Clean up timer handling so old setTimeouts do not fire after returning to menu.
+Consider centralizing screen switching instead of manually toggling hidden everywhere.
+6. Content/Data Polish
+
+Review all food descriptions.
+Add region/category metadata if you want richer UI later.
+Make sure all 20 foods feel balanced and recognizable.
+Decide whether percentages should stay simulated or eventually come from real votes.
+7. Result Screen Improvements
+
+Copy result should handle clipboard failure gracefully.
+Share text could include dot pattern.
+Result screen could show score label + x/10 more clearly if you want.
+8. Local QA Pass
+
+Test daily mode, practice mode, restart, topbar logo return, warm-up modal, and final result.
+Test in Chrome/Edge.
+Test at desktop, tablet, and mobile viewport sizes.
+My recommended order: production cleanup → timer/transition hardening → mobile layout → accessibility → asset optimization → final QA.

@@ -1,0 +1,293 @@
+/* // theme tokens */
+:root {
+  --bg: #1A0E07;
+  --surface: #2A1608;
+  --surface2: #3A2010;
+  --text: #F0E0C8;
+  --muted: #8A6545;
+  --primary: #E63946;
+  --accent: #F4A261;
+  --border: #4A2E18;
+  --correct: #4CAF50;
+  --wrong: #EF4444;
+  --dot-next: #3A2A1A;
+  --dot-current: #4A9EFF;
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* // global reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* // base page */
+body {
+  font-family: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* // subtle background texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    92deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.018) 2px,
+    rgba(255,255,255,0.018) 3px
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* // main container */
+main {
+  max-width: 1180px;
+  margin: auto;
+  padding-top: 32px;
+}
+
+/* // button font inheritance */
+button {
+  font-family: inherit;
+}
+
+/* // shared buttons */
+#start-btn,
+#practice-btn,
+#copy-result-btn,
+#restart-btn,
+#modal-btn {
+  margin-top: 16px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 16px;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.35);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* // shared button hover */
+#start-btn:hover,
+#practice-btn:hover,
+#copy-result-btn:hover,
+#restart-btn:hover,
+#modal-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* // muted text */
+.subtitle,
+.description,
+.daily-text {
+  color: var(--muted);
+}
+
+/* // hidden utility */
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/* // shared top navigation */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  height: 92px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 42px;
+
+  background: rgba(26, 14, 7, 0.82);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* // hide topbar only on main menu */
+body.menu-active .topbar {
+  display: none;
+}
+
+/* // center topbar logo */
+.topbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* // clickable topbar logo */
+.topbar-logo-btn {
+  padding: 0;
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+.topbar-logo-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 8px;
+  border-radius: 12px;
+}
+
+/* // logo image inside topbar */
+.topbar-logo {
+  width: 240px;
+  height: auto;
+
+  display: block;
+
+  opacity: 0.96;
+}
+
+/* // modal backdrop */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.24s ease, backdrop-filter 0.24s ease;
+}
+
+.modal.is-open {
+  opacity: 1;
+}
+
+.modal.is-closing {
+  opacity: 0;
+}
+
+/* // modal card */
+.modal-box {
+  width: min(440px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s ease;
+}
+
+.modal.is-open .modal-box {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal.is-closing .modal-box {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+}
+
+/* // modal text */
+#modal-text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.modal-copy-panel {
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(0,0,0,0.24);
+}
+
+.modal-copy-value {
+  margin: 0;
+  padding: 4px 0 4px 4px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.45;
+  text-align: left;
+  user-select: text;
+  white-space: pre-line;
+}
+
+.modal-copy-btn {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+.modal-copy-btn.is-copied {
+  background: var(--correct);
+}
+
+.modal-copy-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.modal-copy-text {
+  position: fixed;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.modal-copy-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* // modal button override */
+#modal-btn {
+  margin-top: 0;
+  min-width: 140px;
+}
+

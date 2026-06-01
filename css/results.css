@@ -1,0 +1,208 @@
+/* // result screen layout */
+#result-screen {
+  max-width: 1180px;
+  min-height: calc(100vh - 92px);
+
+  margin: 0 auto;
+  padding: 0 24px 54px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* // result hero card */
+.result-hero {
+  width: min(760px, 100%);
+
+  margin: -34px auto 14px;
+  padding: 18px 24px;
+
+  background: rgba(255,255,255,0.025);
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+}
+
+/* // result title */
+.final-score {
+  margin: 0 0 12px;
+
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1px;
+
+  color: var(--text);
+
+  text-align: center;
+}
+
+/* // result dots row */
+.result-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  margin: 0 0 12px;
+}
+
+/* // single result dot */
+.result-dot {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 999px;
+}
+
+/* // correct dot */
+.result-dot.correct {
+  background: var(--correct);
+}
+
+/* // wrong dot */
+.result-dot.wrong {
+  background: var(--wrong);
+}
+
+/* // result message */
+.final-message {
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  color: var(--accent);
+
+  text-align: center;
+}
+
+/* // matchup breakdown */
+.matchup-breakdown {
+  width: min(820px, 100%);
+
+  margin: 0 auto 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* // one matchup row */
+.matchup-row {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 170px 1fr 170px;
+  align-items: center;
+  gap: 14px;
+
+  padding: 8px 12px;
+
+  background: rgba(255,255,255,0.03);
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+/* // food names */
+.matchup-food {
+  font-size: 14px;
+  font-weight: 800;
+
+  color: var(--text);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* // left food */
+.matchup-food.left {
+  text-align: right;
+}
+
+/* // right food */
+.matchup-food.right {
+  text-align: left;
+}
+
+/* // matchup bar */
+.matchup-bar {
+  height: 16px;
+
+  display: flex;
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: var(--surface2);
+}
+
+/* // left percentage segment */
+.matchup-bar-left {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--correct);
+}
+
+/* // right percentage segment */
+.matchup-bar-right {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--wrong);
+}
+
+/* // percentage text */
+.matchup-percent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+
+  color: white;
+
+  text-shadow: 0 1px 5px rgba(0,0,0,0.7);
+}
+
+/* // result action wrapper */
+.result-actions {
+  width: min(820px, 100%);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+
+  margin: 0 auto;
+}
+
+/* // result buttons */
+.result-actions #copy-result-btn,
+.result-actions #restart-btn {
+  width: 260px;
+  margin: 0 !important;
+}
+
+/* // secondary result button */
+.result-actions #restart-btn {
+  background: var(--surface2);
+
+  border: 1px solid var(--border);
+
+  box-shadow: none;
+}

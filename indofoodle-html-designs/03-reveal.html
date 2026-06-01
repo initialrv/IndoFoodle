@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>IndoFoodle — Reveal State</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #1A0E07;
+      --surface:  #2A1608;
+      --text:     #F0E0C8;
+      --muted:    #8A6545;
+      --primary:  #E63946;
+      --accent:   #F4A261;
+      --border:   #4A2E18;
+      --correct:  #4CAF50;
+      --wrong:    #EF4444;
+      --dot-next: #3A2A1A;
+      --dot-curr: #4A9EFF;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      width: 1280px;
+      height: 800px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .menu-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .correct-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--correct);
+      letter-spacing: 0.06em;
+      animation: fadeIn 0.4s ease-out both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .progress-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot { border-radius: 50%; flex-shrink: 0; }
+    .dot-correct { width: 10px; height: 10px; background: var(--correct); }
+    .dot-wrong   { width: 10px; height: 10px; background: var(--wrong); }
+    .dot-next    { width: 10px; height: 10px; background: var(--dot-next); }
+
+    /* current round just answered correctly — shows as green but larger */
+    .dot-just-answered {
+      width: 14px;
+      height: 14px;
+      background: var(--correct);
+    }
+
+    .game-prompt {
+      text-align: center;
+      padding: 18px 0 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      padding: 0 32px 24px;
+      gap: 0;
+      position: relative;
+      min-height: 0;
+    }
+
+    /* Winner card */
+    .food-card {
+      flex: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+    }
+
+    .food-card.winner {
+      margin-right: 24px;
+      box-shadow: 0 0 0 3px var(--correct), 0 16px 48px rgba(76,175,80,0.3);
+    }
+
+    .food-card.loser {
+      margin-left: 24px;
+      opacity: 0.62;
+    }
+
+    .food-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .food-card.winner img { filter: brightness(0.55); }
+    .food-card.loser  img { filter: brightness(0.32) saturate(0.45); }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.28) 100%);
+    }
+
+    .loser .card-overlay {
+      background: rgba(0,0,0,0.38);
+    }
+
+    .region-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      backdrop-filter: blur(8px);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    .winner .region-badge {
+      background: var(--correct);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .loser .region-badge {
+      background: rgba(0,0,0,0.55);
+      color: rgba(255,255,255,0.65);
+    }
+
+    .percentage-block {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.45s ease-out both;
+    }
+
+    .winner .percentage-block { animation-delay: 0s; }
+    .loser  .percentage-block { animation-delay: 0.15s; }
+
+    .pct-number {
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .winner .pct-number { font-size: 96px; color: #fff; }
+    .loser  .pct-number { font-size: 80px; color: rgba(255,255,255,0.75); }
+
+    .pct-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .winner .pct-label { color: rgba(255,255,255,0.7); }
+    .loser  .pct-label { color: rgba(255,255,255,0.4); }
+
+    .card-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 28px;
+    }
+
+    .winner .card-info h2 { font-size: 38px; font-weight: 900; color: #fff; letter-spacing: -1px; margin-bottom: 4px; }
+    .winner .card-info p  { font-size: 14px; color: rgba(255,255,255,0.65); }
+    .loser  .card-info h2 { font-size: 38px; font-weight: 900; color: rgba(255,255,255,0.65); letter-spacing: -1px; margin-bottom: 4px; }
+    .loser  .card-info p  { font-size: 14px; color: rgba(255,255,255,0.4); }
+
+    .vs-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 56px;
+      height: 56px;
+      background: var(--bg);
+      border: 4px solid var(--bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      color: #3A2A1A;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    .auto-hint {
+      text-align: center;
+      padding: 10px 0 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      flex-shrink: 0;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.45; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="menu-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Menu
+    </div>
+
+    <!-- Round 4 just answered correctly: dots 1-3 past, dot 4 correct (larger), 5-10 next -->
+    <div class="progress-dots">
+      <div class="dot dot-correct"></div>
+      <div class="dot dot-wrong"></div>
+      <div class="dot dot-correct"></div>
+      <div class="dot dot-just-answered"></div>
+      <div class="dot dot-next"></div>
+      <div class="dot dot-next"></div>
+      <div class="dot dot-next"></div>
+      <div class="dot dot-next"></div>
+      <div class="dot dot-next"></div>
+      <div class="dot dot-next"></div>
+    </div>
+
+    <span class="correct-label">Correct!</span>
+  </header>
+
+  <div class="game-prompt">Rendang Wins!</div>
+
+  <main>
+    <!-- Winner: Rendang -->
+    <div class="food-card winner">
+      <img src="images/rendang.png" alt="Rendang" />
+      <div class="card-overlay"></div>
+      <span class="region-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Winner
+      </span>
+      <div class="percentage-block">
+        <span class="pct-number">68%</span>
+        <span class="pct-label">of votes</span>
+      </div>
+      <div class="card-info">
+        <h2>Rendang</h2>
+        <p>Slow-cooked beef in rich coconut-spice sauce.</p>
+      </div>
+    </div>
+
+    <div class="vs-badge">VS</div>
+
+    <!-- Loser: Gado-Gado -->
+    <div class="food-card loser">
+      <img src="images/gadogado.png" alt="Gado-Gado" />
+      <div class="card-overlay"></div>
+      <span class="region-badge">West Java</span>
+      <div class="percentage-block">
+        <span class="pct-number">32%</span>
+        <span class="pct-label">of votes</span>
+      </div>
+      <div class="card-info">
+        <h2>Gado-Gado</h2>
+        <p>Fresh vegetables with peanut sauce and crackers.</p>
+      </div>
+    </div>
+  </main>
+
+  <div class="auto-hint">Next up in 2s...</div>
+</body>
+</html>

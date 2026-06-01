@@ -1,0 +1,281 @@
+@media (max-width: 760px) {
+  body {
+    min-width: 0;
+  }
+
+  main {
+    width: 100%;
+    max-width: none;
+    padding: 18px 14px 30px;
+  }
+
+  .topbar {
+    height: 72px;
+    padding: 0 18px;
+  }
+
+  .topbar-logo {
+    width: min(190px, 74vw);
+  }
+
+  .topbar-logo-btn:focus-visible {
+    outline-offset: 5px;
+  }
+
+  #menu-screen {
+    min-height: 100svh;
+    padding: 22px 18px 32px;
+  }
+
+  .main-logo {
+    width: min(420px, 96vw);
+    margin: 0 auto 28px;
+  }
+
+  .subtitle {
+    max-width: 100%;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .description {
+    max-width: 34rem;
+    font-size: 16px;
+    line-height: 1.55;
+    margin-bottom: 28px;
+  }
+
+  .menu-actions,
+  .result-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #start-btn,
+  #practice-btn,
+  #copy-result-btn,
+  #restart-btn,
+  #modal-btn {
+    width: min(100%, 340px);
+    min-height: 52px;
+    padding: 14px 20px;
+    font-size: 15px;
+    border-radius: 14px;
+  }
+
+  .daily-text {
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  #warmup-screen,
+  #game-screen {
+    min-height: calc(100svh - 72px);
+    padding-top: 18px;
+  }
+
+  #warmup-screen .subtitle {
+    margin-top: -10px;
+    margin-bottom: 12px;
+    font-size: 22px;
+  }
+
+  #progress {
+    gap: 8px;
+    margin: 0 0 18px;
+  }
+
+  .progress-dot {
+    width: 13px;
+    height: 13px;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .card {
+    flex: 0 0 auto;
+    display: block;
+    width: 100%;
+    min-height: 0;
+    height: clamp(288px, 41svh, 385px);
+    border-radius: 18px;
+  }
+
+  .card-content::after {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.98) 0%,
+      rgba(0,0,0,0.88) 22%,
+      rgba(0,0,0,0.34) 46%,
+      rgba(0,0,0,0.12) 100%
+    );
+  }
+
+  body.cards-interactive .card:not(.disabled):hover {
+    transform: none;
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .food-name {
+    bottom: 42px;
+    padding: 0 20px;
+    font-size: clamp(24px, 6.7vw, 31px);
+    line-height: 1.02;
+    letter-spacing: 0;
+  }
+
+  .food-desc {
+    bottom: 17px;
+    padding: 0 20px;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .card.revealed .food-name {
+    color: rgba(255,255,255,0.72);
+  }
+
+  .card.revealed .food-desc {
+    color: rgba(255,255,255,0.48);
+  }
+
+  .percentage-overlay {
+    font-size: clamp(44px, 15vw, 64px);
+    letter-spacing: 0;
+  }
+
+  #warmup-screen .percentage-overlay {
+    font-size: clamp(30px, 9vw, 42px);
+  }
+
+  #result-screen {
+    min-height: calc(100svh - 72px);
+    padding: 14px 10px 24px;
+    justify-content: flex-start;
+  }
+
+  .result-hero {
+    width: 100%;
+    margin: 0 auto 10px;
+    padding: 14px 12px;
+    border-radius: 16px;
+  }
+
+  .final-score {
+    margin-bottom: 10px;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+
+  .result-dots {
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .result-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .final-message {
+    font-size: 13px;
+  }
+
+  .matchup-breakdown {
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .matchup-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px 12px;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .matchup-food,
+  .matchup-food.left,
+  .matchup-food.right {
+    font-size: 12px;
+    line-height: 1.2;
+    min-width: 0;
+    white-space: normal;
+  }
+
+  .matchup-food.left {
+    order: 1;
+    text-align: left;
+  }
+
+  .matchup-food.right {
+    order: 2;
+    text-align: right;
+  }
+
+  .matchup-bar {
+    grid-column: 1 / -1;
+    height: 14px;
+    order: 3;
+  }
+
+  .matchup-percent {
+    font-size: 9px;
+  }
+
+  .result-actions #copy-result-btn,
+  .result-actions #restart-btn {
+    width: min(100%, 340px);
+  }
+
+  .modal {
+    padding: 18px;
+  }
+
+  .modal-box {
+    border-radius: 20px;
+    padding: 24px 20px;
+  }
+
+  #modal-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .modal-copy-panel {
+    grid-template-columns: 1fr 44px;
+    padding: 10px;
+  }
+
+  .modal-copy-value {
+    font-size: 14px;
+  }
+
+  .modal-copy-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 380px) {
+  .card {
+    height: clamp(264px, 39svh, 342px);
+  }
+
+  .food-name {
+    font-size: 24px;
+  }
+
+  .food-desc {
+    font-size: 11px;
+  }
+}

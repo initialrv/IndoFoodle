@@ -1,0 +1,122 @@
+{
+  "rendang": {
+    "name": "Rendang",
+    "description_en": "Slow-cooked beef in coconut milk and spices.",
+    "description_id": "Daging sapi dimasak perlahan dengan santan dan rempah-rempah.",
+    "image": "assets/images/foods/rendang.jpg"
+  },
+  "gudeg": {
+    "name": "Gudeg",
+    "description_en": "Sweet young jackfruit stew from Yogyakarta.",
+    "description_id": "Gudeg nangka muda bercita rasa manis khas Yogyakarta.",
+    "image": "assets/images/foods/gudeg.jpg"
+  },
+  "pempek": {
+    "name": "Pempek",
+    "description_en": "Fish cake served with sweet and sour vinegar sauce.",
+    "description_id": "Olahan ikan khas Palembang yang disajikan dengan kuah cuko.",
+    "image": "assets/images/foods/pempek.jpg"
+  },
+  "batagor": {
+    "name": "Batagor",
+    "description_en": "Fried fish dumplings with peanut sauce.",
+    "description_id": "Tahu dan pangsit ikan goreng khas Bandung dengan saus kacang.",
+    "image": "assets/images/foods/batagor.jpg"
+  },
+  "rawon": {
+    "name": "Rawon",
+    "description_en": "East Javanese beef soup with black keluak broth.",
+    "description_id": "Sup daging khas Jawa Timur dengan kuah hitam dari keluak.",
+    "image": "assets/images/foods/rawon.jpg"
+  },
+  "sotoBetawi": {
+    "name": "Soto Betawi",
+    "description_en": "Jakarta-style beef soup with coconut milk broth.",
+    "description_id": "Soto khas Betawi dengan kuah santan dan potongan daging.",
+    "image": "assets/images/foods/soto-betawi.jpg"
+  },
+  "ayamBetutu": {
+    "name": "Ayam Betutu",
+    "description_en": "Balinese spiced chicken cooked with aromatic herbs.",
+    "description_id": "Ayam khas Bali yang dimasak dengan bumbu rempah aromatik.",
+    "image": "assets/images/foods/ayam-betutu.jpg"
+  },
+  "papeda": {
+    "name": "Papeda",
+    "description_en": "Sago porridge from eastern Indonesia.",
+    "description_id": "Bubur sagu khas Indonesia timur yang biasanya dimakan dengan ikan kuah kuning.",
+    "image": "assets/images/foods/papeda.jpg"
+  },
+  "mieAceh": {
+    "name": "Mie Aceh",
+    "description_en": "Spicy Acehnese noodles with rich curry seasoning.",
+    "description_id": "Mie khas Aceh dengan bumbu kari yang kuat dan pedas.",
+    "image": "assets/images/foods/mie-aceh.jpg"
+  },
+  "cotoMakassar": {
+    "name": "Coto Makassar",
+    "description_en": "Makassar beef soup served with ketupat.",
+    "description_id": "Sup daging khas Makassar yang biasanya disajikan dengan ketupat.",
+    "image": "assets/images/foods/coto-makassar.jpg"
+  },
+  "nasiLiwet": {
+    "name": "Nasi Liwet",
+    "description_en": "Savory rice cooked with coconut milk and spices.",
+    "description_id": "Nasi gurih yang dimasak dengan santan dan rempah.",
+    "image": "assets/images/foods/nasi-liwet.jpg"
+  },
+  "kerakTelor": {
+    "name": "Kerak Telor",
+    "description_en": "Betawi crispy omelette with sticky rice.",
+    "description_id": "Makanan khas Betawi berupa telur dan beras ketan yang dimasak hingga renyah.",
+    "image": "assets/images/foods/kerak-telor.jpg"
+  },
+  "nasiUduk": {
+    "name": "Nasi Uduk",
+    "description_en": "Fragrant coconut rice with side dishes.",
+    "description_id": "Nasi gurih beraroma santan yang disajikan dengan berbagai lauk.",
+    "image": "assets/images/foods/nasi-uduk.jpg"
+  },
+  "ayamTaliwang": {
+    "name": "Ayam Taliwang",
+    "description_en": "Spicy grilled chicken from Lombok.",
+    "description_id": "Ayam bakar pedas khas Lombok dengan bumbu yang kuat.",
+    "image": "assets/images/foods/ayam-taliwang.jpg"
+  },
+  "rujakCingur": {
+    "name": "Rujak Cingur",
+    "description_en": "East Javanese salad with savory sauce.",
+    "description_id": "Rujak khas Jawa Timur dengan sayur, buah, dan saus petis.",
+    "image": "assets/images/foods/rujak-cingur.jpg"
+  },
+  "konro": {
+    "name": "Konro",
+    "description_en": "Makassar beef ribs in dark spiced soup.",
+    "description_id": "Sup iga sapi khas Makassar dengan kuah rempah berwarna gelap.",
+    "image": "assets/images/foods/konro.jpg"
+  },
+  "tahuGejrot": {
+    "name": "Tahu Gejrot",
+    "description_en": "Fried tofu with sweet spicy sauce.",
+    "description_id": "Tahu goreng khas Cirebon dengan kuah manis, pedas, dan asam.",
+    "image": "assets/images/foods/tahu-gejrot.jpg"
+  },
+  "seblak": {
+    "name": "Seblak",
+    "description_en": "Spicy Sundanese cracker dish.",
+    "description_id": "Makanan pedas khas Sunda berbahan kerupuk basah dan berbagai topping.",
+    "image": "assets/images/foods/seblak.jpg"
+  },
+  "lontongBalap": {
+    "name": "Lontong Balap",
+    "description_en": "Rice cake dish from Surabaya.",
+    "description_id": "Makanan khas Surabaya berisi lontong, tahu, tauge, dan kuah gurih.",
+    "image": "assets/images/foods/lontong-balap.jpg"
+  },
+  "buburManado": {
+    "name": "Bubur Manado",
+    "description_en": "Manado vegetable rice porridge.",
+    "description_id": "Bubur khas Manado dengan campuran sayuran, juga dikenal sebagai tinutuan.",
+    "image": "assets/images/foods/bubur-manado.jpg"
+  }
+}
