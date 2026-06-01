@@ -63,6 +63,15 @@ function getChosenFoodKey(side, leftFood, rightFood) {
   return side === "left" ? leftFood : rightFood;
 }
 
+function getSupabaseVoteDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 async function storeVote({ mode, leftFood, rightFood, chosenFood }) {
   const client = getSupabaseClient();
 
@@ -72,7 +81,7 @@ async function storeVote({ mode, leftFood, rightFood, chosenFood }) {
     client
       .from("votes")
       .insert({
-        vote_date: getTodayKey(),
+        vote_date: getSupabaseVoteDate(),
         mode: mode,
         matchup_key: getMatchupKey(leftFood, rightFood),
         left_food: leftFood,
