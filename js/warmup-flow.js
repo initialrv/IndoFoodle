@@ -23,6 +23,8 @@ function voteWarmup(side) {
 
   answered = true;
 
+  saveWarmupVote(side);
+
   warmupLeftCard.classList.add("disabled", "revealed");
   warmupRightCard.classList.add("disabled", "revealed");
 

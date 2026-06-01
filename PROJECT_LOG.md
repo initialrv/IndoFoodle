@@ -485,6 +485,31 @@ All future fixes must be appended here with the date, scope, files changed, and 
 ### Verification
 - I have not run live browser verification in this turn.
 
+## 2026-06-01 - Supabase Vote Data Integration
+
+### Scope
+- Added Supabase browser client integration for warm-up and daily game votes.
+- Prepared daily matchup percentages to use real vote totals when enough votes exist.
+- Kept Practice Mode local-only.
+
+### Files Changed
+- `index.html`
+- `js/supabase-client.js`
+- `js/warmup-flow.js`
+- `js/game-flow.js`
+
+### Summary
+- Loaded Supabase from the browser CDN before the app scripts.
+- Added the public Supabase project URL and publishable browser key to the client config.
+- Generated a stable anonymous player ID in `localStorage`.
+- Stored warm-up votes and daily votes in the `votes` table.
+- Used unordered matchup keys so reversed food pairs share vote totals.
+- Fetched vote totals through the `get_vote_totals` RPC and fell back to generated percentages when Supabase is unavailable or has too few votes.
+
+### Verification
+- Supabase tables, policies, and RPC were created successfully in the dashboard.
+- Frontend JavaScript syntax and browser flow verification were run after applying the file changes.
+
 ## 2026-05-25 - Final Do-Now Cleanup Pass
 
 ### Scope

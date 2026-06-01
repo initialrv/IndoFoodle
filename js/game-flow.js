@@ -1,5 +1,5 @@
 /* // choose answer */
-function choose(side) {
+async function choose(side) {
   if (answered) return;
 
   const sessionId = gameSessionId;
@@ -10,6 +10,20 @@ function choose(side) {
 
   leftCard.classList.add("disabled", "revealed");
   rightCard.classList.add("disabled", "revealed");
+
+  const resultData = isPracticeMode
+    ? {
+        leftPercentage: q.leftPercentage,
+        rightPercentage: q.rightPercentage,
+        majority: q.majority
+      }
+    : await saveDailyVoteAndGetPercentages(q, side);
+
+  if (!isCurrentGameSession(sessionId)) return;
+
+  q.leftPercentage = resultData.leftPercentage;
+  q.rightPercentage = resultData.rightPercentage;
+  q.majority = resultData.majority;
 
   const chosenCard = side === "left" ? leftCard : rightCard;
   const majorityCard = q.majority === "left" ? leftCard : rightCard;
